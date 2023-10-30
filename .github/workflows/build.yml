@@ -37,7 +37,7 @@ jobs:
         name: build-artifact
     - name: Build the Docker image
       run: |
-        docker build . --file Dockerfile --tag $IMAGE_NAME
+        docker build . --file Dockerfile --tag ghcr.io/${{ github.repository }}:latest
         docker save $IMAGE_NAME > $IMAGE_PATH
     - name: Archive production artifacts
       uses: actions/upload-artifact@v3
