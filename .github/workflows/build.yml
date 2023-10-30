@@ -23,7 +23,7 @@ jobs:
       with:
         name: build-artifact
         path: |
-          target/
+          target/release/gh-action-test
 
   container_build:
     if: github.ref == 'refs/heads/main'
@@ -35,9 +35,10 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: build-artifact
-        path: target/
+        path: target/release/gh-action-test
     - name: Build the Docker image
       run: |
+        test -x target/release/gh-action-test && echo "is executable" || echo "not executable"
         docker build . --file Dockerfile --tag $IMAGE_NAME
         docker save $IMAGE_NAME > image.tar
     - name: Archive container artifacts
