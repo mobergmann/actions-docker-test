@@ -9,7 +9,7 @@ on:
 env:
   CARGO_TERM_COLOR: always
   IMAGE_NAME: ghcr.io/${{ github.repository }}:latest
-  IMAGE_PATH: ${{ github.repository }}-image.tar
+  IMAGE_PATH: image.tar
 
 jobs:
   build:
