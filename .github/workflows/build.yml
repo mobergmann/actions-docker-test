@@ -37,8 +37,8 @@ jobs:
         name: build-artifact
     - name: Build the Docker image
       run: |
-        apt update
-        apt install tree
+        sudo apt update -y
+        sudo apt install tree -y
         tree .
         docker build . --file Dockerfile --tag $IMAGE_NAME
         docker save $IMAGE_NAME > $IMAGE_PATH
