@@ -40,14 +40,13 @@ jobs:
       run: |
         docker build . --file Dockerfile --tag $IMAGE_NAME
         ls .
-        docker save $IMAGE_NAME > $IMAGE_PATH
+        docker save $IMAGE_NAME > image.tar
         ls .
-        ls $IMAGE_PATH
     - name: Archive container artifacts
       uses: actions/upload-artifact@v3
       with:
         name: container-image-artifact
-        path: $IMAGE_PATH
+        path: image.tar
 
   container_deploy:
     if: github.ref == 'refs/heads/main'
@@ -61,5 +60,6 @@ jobs:
         name: container-image-artifact
     - name: Publish the image
       run: |
+        docker load < image.tar
         docker login --username ${{ github.repository_owner }} --password ${{ secrets.GH_PAT }}
         docker push $IMAGE_NAME
