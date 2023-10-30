@@ -60,6 +60,7 @@ jobs:
         name: container-image-artifact
     - name: Publish the image
       run: |
+        docker image ls
         docker load < image.tar
         docker login --username ${{ github.repository_owner }} --password ${{ secrets.GH_PAT }}
         docker push $IMAGE_NAME
