@@ -39,9 +39,7 @@ jobs:
     - name: Build the Docker image
       run: |
         docker build . --file Dockerfile --tag $IMAGE_NAME
-        ls .
         docker save $IMAGE_NAME > image.tar
-        ls .
     - name: Archive container artifacts
       uses: actions/upload-artifact@v3
       with:
@@ -60,8 +58,6 @@ jobs:
         name: container-image-artifact
     - name: Publish the image
       run: |
-        docker image ls
         docker load < image.tar
-        docker image ls
-        docker login --username ${{ github.repository_owner }} --password ${{ secrets.GH_PAT }}
+        docker login --username ${{ github.repository_owner }} --password ${{ secrets.GH_PAT }} ghcr.io
         docker push $IMAGE_NAME
