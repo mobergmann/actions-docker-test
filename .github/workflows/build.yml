@@ -39,6 +39,7 @@ jobs:
     - name: Build the Docker image
       run: |
         docker build . --file Dockerfile --tag $IMAGE_NAME
+        ls .
         docker save $IMAGE_NAME > $IMAGE_PATH
     - name: Archive container artifacts
       uses: actions/upload-artifact@v3
