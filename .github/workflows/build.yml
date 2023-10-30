@@ -23,7 +23,7 @@ jobs:
       with:
         name: build-artifact
         path: |
-          ./target/release/gh-action-test
+          target/
 
   container_build:
     if: github.ref == 'refs/heads/main'
@@ -40,6 +40,7 @@ jobs:
         sudo apt update -y
         sudo apt install tree -y
         tree .
+        ./target/release/gh-action-test
         docker build . --file Dockerfile --tag $IMAGE_NAME
         docker save $IMAGE_NAME > $IMAGE_PATH
     - name: Archive production artifacts
