@@ -8,11 +8,11 @@ WORKDIR /src
 
 RUN sudo apt-get update -y
 RUN sudo apt-get install tree -y
-RUN tree
 RUN pwd
-RUN chmod 555 gh-action-test
+RUN tree .
 RUN ls -l .
 RUN ls -l gh-action-test
 RUN ls -ld gh-action-test
+#RUN chmod 555 gh-action-test
 
 CMD "./gh-action-test"
