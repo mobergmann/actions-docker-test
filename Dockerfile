@@ -6,6 +6,7 @@ COPY ./target/release/gh-action-test /src/gh-action-test
 
 WORKDIR /src
 
+RUN chmod 555 gh-action-test
 RUN ls -l .
 RUN apt-get update -y
 RUN apt-get install tree -y
