@@ -6,4 +6,6 @@ COPY ./target/release/gh-action-test /src/gh-action-test
 
 WORKDIR /src
 
+RUN tree .
+
 CMD "./gh-action-test"
